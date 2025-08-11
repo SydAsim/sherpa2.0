@@ -136,9 +136,9 @@ const LandingPage = () => {
               >
                 <div className="relative">
                   <img 
-                    class="w-full h-auto rounded-2xl shadow-2xl floating-animation" 
+                    className="w-full h-auto rounded-2xl shadow-2xl floating-animation" 
                     alt="SHERPA Dashboard Preview"
-                   src="https://images.unsplash.com/photo-1516383274235-5f42d6c6426d" />
+                    src="https://images.unsplash.com/photo-1516383274235-5f42d6c6426d" />
                   
                   <motion.div
                     className="absolute -top-10 -left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl"
@@ -259,9 +259,9 @@ const LandingPage = () => {
                 className="relative"
               >
                 <img   
-                  class="w-full h-auto rounded-2xl shadow-2xl" 
+                  className="w-full h-auto rounded-2xl shadow-2xl" 
                   alt="AI Security Analysis Interface"
-                 src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9" />
+                  src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9" />
                 
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl"

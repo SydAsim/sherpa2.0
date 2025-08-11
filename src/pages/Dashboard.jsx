@@ -25,6 +25,7 @@ const Dashboard = () => {
   const [selectedSeverity, setSelectedSeverity] = useState('All');
   const [selectedVulnerability, setSelectedVulnerability] = useState(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const getSeverityColor = (severity) => {
     switch (severity) {
@@ -123,24 +124,26 @@ const Dashboard = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        <Navbar />
-        <Sidebar />
+        <Navbar showMenu onMenuClick={() => setIsSidebarOpen(true)} />
+        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         
-        <div className="ml-64 pt-16">
-          <div className="p-8">
+        <div className="pt-16 md:ml-64">
+          <div className="px-4 py-6 md:p-8">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
-              <motion.div variants={itemVariants} className="flex justify-between items-center mb-8">
-                <div>
+              <motion.div variants={itemVariants} className="flex justify-between items-center mb-8 gap-3 flex-wrap">
+                <div className="min-w-[200px]">
                   <h1 className="text-3xl font-bold">Security Dashboard</h1>
                   <p className="text-muted-foreground">
                     Monitor and manage your organization's security posture
                   </p>
                 </div>
-                <AddVulnerabilityDialog />
+                <div className="shrink-0">
+                  <AddVulnerabilityDialog />
+                </div>
               </motion.div>
 
               {/* Stats Cards */}
@@ -182,13 +185,14 @@ const Dashboard = () => {
                           className="pl-10"
                         />
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 overflow-x-auto whitespace-nowrap -mx-1 px-1">
                         {['All', 'Critical', 'High', 'Medium', 'Low'].map((severity) => (
                           <Button
                             key={severity}
                             variant={selectedSeverity === severity ? 'default' : 'outline'}
                             size="sm"
                             onClick={() => setSelectedSeverity(severity)}
+                            className="shrink-0"
                           >
                             {severity}
                           </Button>

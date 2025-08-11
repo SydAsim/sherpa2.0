@@ -136,13 +136,14 @@ const ResearchTab = () => {
           </Button>
         </div>
 
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-6 overflow-x-auto whitespace-nowrap -mx-1 px-1">
           {['All', 'Vulnerability', 'Threat Intelligence', 'Best Practices'].map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? 'default' : 'outline'}
               size="sm"
               onClick={() => handleCategoryChange(category)}
+              className="shrink-0"
             >
               {category}
             </Button>
@@ -155,9 +156,9 @@ const ResearchTab = () => {
               key={item.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="border rounded-lg p-6 hover:bg-accent/50 transition-colors"
+              className="border rounded-lg p-4 md:p-6 hover:bg-accent/50 transition-colors"
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-4 gap-3 flex-wrap">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <FileText className="h-5 w-5 text-primary" />
@@ -179,7 +180,7 @@ const ResearchTab = () => {
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                  <div className="flex items-center gap-x-4 gap-y-1 flex-wrap text-sm text-muted-foreground mb-3">
                     <span>Source: {item.source}</span>
                     <span>Date: {item.date}</span>
                     <span>Category: {item.category}</span>
@@ -191,7 +192,7 @@ const ResearchTab = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2 ml-4">
+                <div className="flex gap-2 ml-0 sm:ml-4 w-full sm:w-auto flex-wrap">
                   <Button
                     variant="outline"
                     size="sm"

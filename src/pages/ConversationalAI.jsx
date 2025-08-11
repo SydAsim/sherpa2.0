@@ -28,6 +28,7 @@ const ConversationalAI = () => {
   const messagesEndRef = useRef(null);
   const dispatch = useDispatch();
   const { currentConversation, conversations } = useSelector((state) => state.ai);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -124,14 +125,14 @@ const ConversationalAI = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        <Navbar />
-        <Sidebar />
+        <Navbar showMenu onMenuClick={() => setIsSidebarOpen(true)} />
+        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <div className="ml-64 pt-16">
-          <div className="p-8">
+        <div className="pt-16 md:ml-64">
+          <div className="px-4 py-6 md:p-8">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <div className="flex justify-between items-center mb-8">
-                <div>
+              <div className="flex justify-between items-center mb-8 gap-3 flex-wrap">
+                <div className="min-w-[200px]">
                   <h1 className="text-3xl font-bold flex items-center gap-3">
                     <MessageSquare className="h-8 w-8 text-primary" />
                     Conversational AI
@@ -140,7 +141,7 @@ const ConversationalAI = () => {
                     Chat with SHERPA's AI for security insights and guidance
                   </p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   <Button variant="outline" onClick={handleExportChat}>
                     <Download className="h-4 w-4 mr-2" />
                     Export
@@ -216,7 +217,7 @@ const ConversationalAI = () => {
                             </div>
                           )}
                           <div
-                            className={`max-w-[70%] p-3 rounded-lg ${
+                            className={`max-w-[85%] md:max-w-[70%] p-3 rounded-lg ${
                               msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-accent'
                             }`}
                           >
